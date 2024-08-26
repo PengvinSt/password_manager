@@ -15,7 +15,8 @@
     "build": "pnpm -r --if-present run build",
     "dev": "pnpm -r --stream --if-present run dev",
     "start": "pnpm -r --if-present --parallel start",
-    "format": "pnpm prettier --write \"apps/{web-app,server}/src/**/*.{ts,tsx}\""
+    "format": "pnpm prettier --write \"apps/{web-app,server}/src/**/*.{ts,tsx}\"",
+    "prepare": "husky"
   },
   "keywords": [],
   "license": "ISC",
