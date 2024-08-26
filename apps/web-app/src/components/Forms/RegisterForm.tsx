@@ -16,12 +16,9 @@ import { FormWrapper } from "../Layout";
 type RegisterFormProps = {
   setVaultKey: Dispatch<SetStateAction<string>>;
   setStep: Dispatch<SetStateAction<"login" | "register" | "vault">>;
-}
+};
 
-const RegisterForm = ({
-  setVaultKey,
-  setStep,
-}: RegisterFormProps) => {
+const RegisterForm = ({ setVaultKey, setStep }: RegisterFormProps) => {
   const {
     handleSubmit,
     register,
@@ -64,12 +61,10 @@ const RegisterForm = ({
       email,
       hashedPassword,
     });
-  }
+  };
 
   return (
-    <FormWrapper
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <FormWrapper onSubmit={handleSubmit(onSubmit)}>
       <Heading>Register</Heading>
 
       <FormControl mt="4">

@@ -18,13 +18,9 @@ type LoginFormProps = {
   setVault: Dispatch<SetStateAction<VaultItem[]>>;
   setVaultKey: Dispatch<SetStateAction<string>>;
   setStep: Dispatch<SetStateAction<"login" | "register" | "vault">>;
-}
+};
 
-const LoginForm = ({
-  setVault,
-  setVaultKey,
-  setStep,
-}: LoginFormProps) => {
+const LoginForm = ({ setVault, setVaultKey, setStep }: LoginFormProps) => {
   const {
     handleSubmit,
     register,
@@ -70,12 +66,10 @@ const LoginForm = ({
       email,
       hashedPassword,
     });
-  }
+  };
 
   return (
-    <FormWrapper
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <FormWrapper onSubmit={handleSubmit(onSubmit)}>
       <Heading>Login</Heading>
 
       <FormControl mt="4">

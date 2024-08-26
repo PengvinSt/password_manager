@@ -3,7 +3,6 @@ import React from "react";
 import {
   Control,
   FieldArrayWithId,
-  UseFieldArrayRemove,
   UseFormRegister,
 } from "react-hook-form";
 import { VaultItem } from "../../types/vault";
