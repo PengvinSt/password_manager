@@ -9,7 +9,6 @@ export const generateVaultKey = ({
   salt,
 }: {
   email: string;
-
   hashedPassword: string;
   salt: string;
 }) =>

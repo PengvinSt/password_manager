@@ -9,20 +9,22 @@ import {
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { loginUser, registerUser } from "../api";
-import { decryptVault, generateVaultKey, hashPassword } from "../crypto";
-import { VaultItem } from "../pages";
-import FormWrapper from "./FormWrapper";
+import { VaultItem } from "../../types/vault";
+import { loginUser } from "../../api";
+import { decryptVault, generateVaultKey, hashPassword } from "../../crypto";
+import { FormWrapper } from "../Layout";
+
+type LoginFormProps = {
+  setVault: Dispatch<SetStateAction<VaultItem[]>>;
+  setVaultKey: Dispatch<SetStateAction<string>>;
+  setStep: Dispatch<SetStateAction<"login" | "register" | "vault">>;
+}
 
 const LoginForm = ({
   setVault,
   setVaultKey,
   setStep,
-}: {
-  setVault: Dispatch<SetStateAction<VaultItem[]>>;
-  setVaultKey: Dispatch<SetStateAction<string>>;
-  setStep: Dispatch<SetStateAction<"login" | "register" | "vault">>;
-}) => {
+}: LoginFormProps) => {
   const {
     handleSubmit,
     register,
@@ -56,21 +58,23 @@ const LoginForm = ({
     },
   });
 
+  const onSubmit = () => {
+    const password = getValues("password");
+    const email = getValues("email");
+
+    const hashedPassword = hashPassword(password);
+
+    setValue("hashedPassword", hashedPassword);
+
+    mutation.mutate({
+      email,
+      hashedPassword,
+    });
+  }
+
   return (
     <FormWrapper
-      onSubmit={handleSubmit(() => {
-        const password = getValues("password");
-        const email = getValues("email");
-
-        const hashedPassword = hashPassword(password);
-
-        setValue("hashedPassword", hashedPassword);
-
-        mutation.mutate({
-          email,
-          hashedPassword,
-        });
-      })}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Heading>Login</Heading>
 
